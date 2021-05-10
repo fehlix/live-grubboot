@@ -1,0 +1,53 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          live-grubsave
+# Required-Start:    $local_fs
+# Required-Stop:
+# Should-Start:
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: Save boot parameter as grubenv paramter
+# Description:       Adds live boot parameter into /boot/grub/grubenv.cfg
+#
+### END INIT INFO
+
+# Author: fehlix for mx linux
+
+PATH=/sbin:/bin:/usr/bin
+
+. /lib/init/vars.sh
+. /lib/lsb/init-functions
+
+do_start () {
+    grep -sq '^overlay / ' /proc/mounts  || return # not a Live system
+    grep -sqE -w 'grubsave|gfxsave|bootsave' /proc/cmdline || return # nothing todo
+    which  live-grubsave.sh >/dev/null || return # no live-grubsave.sh; quit silently
+    [ "$VERBOSE" != no ] && log_action_begin_msg "Saving live boot parameter into grubenv"
+    live-grubsave.sh
+    RET=$?
+    [ "$VERBOSE" != no ] && log_action_end_msg $RET
+    exit $RET
+}
+
+case "$1" in
+  start|"")
+    do_start || :
+    ;;
+  restart|reload|force-reload)
+    echo "Error: argument '$1' not supported" >&2
+    exit 3
+    ;;
+  stop)
+    # No-op
+    ;;
+  status)
+    exit 0
+    ;;
+  *)
+    echo "Usage: live-grubsave [start]" >&2
+    exit 3
+    ;;
+esac
+
+:
