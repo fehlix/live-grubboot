@@ -23,18 +23,18 @@ terminal-box:   "inbox_*.png"
 }
 
 
-# Show the options menu
+# Show the localization menu
 + boot_menu {
-    left        = 5%
-    top         = 15%
-    width       = 90%
-    height      = 70%
+    left        = 25%
+    top         = 20%
+    width       = 70%
+    height      = 65%
     item_color                 = "#ffffff"
     selected_item_color        = "#ffffff"
     selected_item_pixmap_style = "select_*.png"
 
-    selected_item_font = "DejaVu Sans Bold 12"
-    item_font          = "DejaVu Sans Bold 12"
+    selected_item_font = "DejaVu Sans Bold 10"
+    item_font          = "DejaVu Sans Bold 10"
     item_height        = 32
     item_padding       = 0
     item_spacing       = 0
@@ -47,9 +47,9 @@ terminal-box:   "inbox_*.png"
 # --using individual labels instead of a vbox
 
 + label {
-    left  = 5%
+    left  = 20%
     top   = 85%
-    width = 90%
+    width = 75%
     #text  = "Use the ↑ and ↓ keys to highlight an entry. Hit »ENTER« to select/deselect."
     text  = "@KEYMAP_MIDDLE@"
     color = "#ffffff"
@@ -58,9 +58,9 @@ terminal-box:   "inbox_*.png"
 }
 
 + label {
-    left  = 5%
+    left  = 20%
     top   = 90%
-    width = 90%
+    width = 75%
     #text  = "To edit the menu, press »e« or »c« for a command line."
     #text  = "Press 'e' to edit the selected entry"
     text  = "@KEYMAP_SHORT@"
