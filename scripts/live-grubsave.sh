@@ -23,6 +23,9 @@ grubsave() {
         pdev  persistdev
         puuid persistuuid
         pdir  persistdir
+        live_swap
+        automount
+        kernel
         )
     local flg=(  # boot parameter as flags 
         toram
